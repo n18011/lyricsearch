@@ -9,7 +9,10 @@ export default () => {
         if (err) {
           console.log('error => ', err)
         }
-        console.log('res.body => ', res.body)
+        res.json()
+      })
+      .then(json => {
+        console.log(JSON.stringify(json))
       })
   }, [])
   return (
