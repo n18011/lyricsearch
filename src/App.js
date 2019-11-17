@@ -1,27 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
-function App() {
+export default () => {
+  useEffect(() => {
+    fetch('./.netlify/functions/hello')
+      .then((res, err) => {
+        if (err) {
+          console.log('error => ', err)
+        }
+        console.log('response => ', res)
+      })
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      Not Build
-    </div>
-  );
+    <>
+    </>
+  )
 }
-
-export default App;
