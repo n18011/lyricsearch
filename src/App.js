@@ -1,19 +1,28 @@
-import React, { useEffect } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react'
+import { client } from './algolia'
+import {
+  InstantSearch,
+  Hits,
+  SearchBox,
+  Pagination,
+  Configure
+} from 'react-instantsearch-dom'
 
 export default () => {
-  useEffect(() => {
-    fetch('./.netlify/functions/hello')
-      .then((res, err) => {
-        if (err) {
-          console.log('error => ', err)
-        }
-        console.log('text => ', res.text())
-      })
-  }, [])
   return (
     <>
+      <InstantSearch indexName='test_kina' searchClient={client}>
+        <Configure hitsPerPage={8} />
+        <SearchBox autoFocus submit={false} />
+        <Hits hitComponent={Hit} />
+        <Pagination />
+      </InstantSearch>
     </>
+  )
+}
+
+function Hit (props) {
+  return (
+    <div className='hit-price'>{props.hit.question}</div>
   )
 }
