@@ -1,28 +1,29 @@
 import React from 'react'
-import { client } from './algolia'
-import {
-  InstantSearch,
-  Hits,
-  SearchBox,
-  Pagination,
-  Configure
-} from 'react-instantsearch-dom'
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import purple from '@material-ui/core/colors/purple'
+import green from '@material-ui/core/colors/green'
+
+import Routing from './components/Routing'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+    type: 'dark'
+  },
+  status: {
+    danger: 'orange'
+  }
+})
 
 export default () => {
   return (
     <>
-      <InstantSearch indexName='test_kina' searchClient={client}>
-        <Configure hitsPerPage={8} />
-        <SearchBox autoFocus submit={false} />
-        <Hits hitComponent={Hit} />
-        <Pagination />
-      </InstantSearch>
+      <ThemeProvider theme={theme}>
+        Hello,App
+        <Routing />
+      </ThemeProvider>
     </>
-  )
-}
-
-function Hit (props) {
-  return (
-    <div className='hit-price'>{props.hit.question}</div>
   )
 }
