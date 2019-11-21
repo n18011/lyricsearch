@@ -3,7 +3,8 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 
 import Search from './Search'
@@ -16,6 +17,7 @@ export default () => {
         <Switch>
           <Route exact path='/' component={Search} />
           <Route exact path='/lyrics/:id' component={Lyric} />
+          <Route render={() => <Redirect to='/' />} />
         </Switch>
       </Router>
     </>
