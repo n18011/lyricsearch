@@ -38,7 +38,7 @@ export default () => {
       <ThemeProvider theme={theme}>
         <Container className={classes.container} maxWidth='md'>
           <Box color='text.primary'>
-        Hello,App
+            <Routing />
           </Box>
         </Container>
 
