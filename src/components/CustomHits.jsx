@@ -5,11 +5,10 @@ import {
 } from 'react-instantsearch-dom'
 
 import {
-  Typography
+  Typography,
+  Link
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   /*
@@ -30,11 +29,9 @@ const Hits = ({ hits }) => {
       {hits.map(hit => {
         const path = `/lyrics/${hit.objectID}`
         return (
-          <Link to={path}>
-            <div key={hit.lyric_num}>
-              <Typography variant='h3' color='primary'>{hit.lyric_num}</Typography>
-              <div className={classes.title}>{hit.title}</div>
-            </div>
+          <Link href={path} key={hit.lyric_num} color='inherit' underline='none'>
+            <Typography variant='h3' color='primary'>{hit.lyric_num}</Typography>
+            <div className={classes.title}>{hit.title}</div>
           </Link>
         )
       })

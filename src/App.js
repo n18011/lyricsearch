@@ -13,9 +13,14 @@ import green from '@material-ui/core/colors/green'
 import './App.css'
 import Routing from './components/Routing'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   container: {
     padding: 0
+    // backgroundColor: theme.palette.common.black
+  },
+  div: {
+  },
+  box: {
   }
 }))
 
@@ -36,11 +41,14 @@ export default () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Container className={classes.container} maxWidth='md'>
-          <Box color='text.primary'>
+        <div className={classes.div}>
+          <Container className={classes.container} >
+            <Box color='text.primary' className={classes.box}>
         Hello,App
-          </Box>
-        </Container>
+              <Routing />
+            </Box>
+          </Container>
+        </div>
 
       </ThemeProvider>
     </>
