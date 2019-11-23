@@ -11,11 +11,16 @@ import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/green'
 
 import './App.css'
-import Routing from './components/Routing'
+import Lyrics from './components/Lyrics'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   container: {
     padding: 0
+    // backgroundColor: theme.palette.common.black
+  },
+  div: {
+  },
+  box: {
   }
 }))
 
@@ -36,11 +41,13 @@ export default () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Container className={classes.container} maxWidth='md'>
-          <Box color='text.primary'>
-            <Routing />
-          </Box>
-        </Container>
+        <div className={classes.div}>
+          <Container className={classes.container} >
+            <Box color='text.primary' className={classes.box}>
+              <Lyrics></Lyrics>
+            </Box>
+          </Container>
+        </div>
 
       </ThemeProvider>
     </>
