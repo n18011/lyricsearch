@@ -9,6 +9,7 @@ import {
 
 import Search from './Search'
 import Lyric from './Lyric'
+import Lyrics from './Lyrics'
 
 export default () => {
   return (
@@ -17,6 +18,7 @@ export default () => {
         <Switch>
           <Route exact path='/' component={Search} />
           <Route exact path='/lyrics/:id' component={Lyric} />
+          <Route exact path='/lyrics' component={Lyrics} />
           <Route render={() => <Redirect to='/' />} />
         </Switch>
       </Router>
