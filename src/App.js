@@ -11,7 +11,7 @@ import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/green'
 
 import './App.css'
-import Routing from './components/Routing'
+import Lyrics from './components/Lyrics'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -44,8 +44,7 @@ export default () => {
         <div className={classes.div}>
           <Container className={classes.container} >
             <Box color='text.primary' className={classes.box}>
-        Hello,App
-              <Routing />
+              <Lyrics></Lyrics>
             </Box>
           </Container>
         </div>

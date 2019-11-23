@@ -1,18 +1,35 @@
-import React, {createContext, useState, useEffect} from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 
-import { connectHits } from 'react-instantsearch-dom'
+import { client } from '../algolia'
 
 const LyricsContext = createContext()
 
-const LyricsProvider = ({children, hits}) => {
-    const [lyrics, setLyrics] = useState(['test', 'test2'])
-    return(
-        <LyricsContext.Provider value={{lyrics, hits}}>
-            {children}
-        </LyricsContext.Provider>
+const LyricsProvider = ({ children }) => {
+  const [lyrics, setLyrics] = useState([])
+  const [value, setValue] = useState('')
+
+  useEffect(() => {
+    const index = client.initIndex('psalm')
+    index.search({
+      query: value,
+      hitsPerPage: 100,
+      attributesToRetrieve: ['lyric_num', 'title', 'lyrics'],
+    },
+      (err, { hits } = {}) => {
+        if (err) throw err;
+
+        setLyrics(hits)
+      }
     )
+  }, [value])
+
+
+  return (
+    <LyricsContext.Provider value={{ lyrics, setValue }}>
+      {children}
+    </LyricsContext.Provider>
+  )
 }
 
-const CustomHitsProvider = connectHits(LyricsProvider)
 
-export {LyricsContext, CustomHitsProvider}
+export { LyricsContext, LyricsProvider }
