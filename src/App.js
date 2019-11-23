@@ -22,14 +22,14 @@ const useStyles = makeStyles(theme => ({
 
 export default () => {
   const classes = useStyles()
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)')
 
   const theme = useMemo(() =>
     createMuiTheme({
       palette: {
         primary: purple,
         secondary: green,
-        type: prefersDarkMode ? 'dark' : 'light'
+        type: 'dark'
       }
     })
   , [prefersDarkMode])
