@@ -10,7 +10,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/green'
 
-// import './App.css'
+import './App.css'
 import Lyrics from './components/Lyrics'
 
 const useStyles = makeStyles(theme => ({
@@ -18,10 +18,6 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     backgroundColor: theme.palette.common.black
   },
-  div: {
-  },
-  box: {
-  }
 }))
 
 export default () => {
@@ -41,13 +37,11 @@ export default () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <div className={classes.div}>
           <Container className={classes.container} >
-            <Box color='text.primary' className={classes.box}>
+            <Box color='text.primary'>
               <Lyrics></Lyrics>
             </Box>
           </Container>
-        </div>
 
       </ThemeProvider>
     </>
