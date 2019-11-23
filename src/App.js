@@ -10,13 +10,13 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import purple from '@material-ui/core/colors/purple'
 import green from '@material-ui/core/colors/green'
 
-import './App.css'
+// import './App.css'
 import Lyrics from './components/Lyrics'
 
 const useStyles = makeStyles(theme => ({
   container: {
-    padding: 0
-    // backgroundColor: theme.palette.common.black
+    padding: 0,
+    backgroundColor: theme.palette.common.black
   },
   div: {
   },
