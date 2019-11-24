@@ -76,6 +76,7 @@ export default ({children}) => {
             color="inherit"
             className={classes.menuButton}
             aria-label="open drawer"
+            onClick={() => setIsShow(false)}
           >
       <QueueMusicRoundedIcon/>
           </IconButton>
