@@ -3,7 +3,7 @@
   "name": "Psalm",
   "icons": [
     {
-      "src": "baseline_queue_music_white_24dp.png",
+      "src": "queueMusic_192px.png",
       "type": "image/png",
       "sizes": "192x192"
     }
