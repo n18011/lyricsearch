@@ -7,6 +7,7 @@ const LyricsContext = createContext()
 const LyricsProvider = ({ children }) => {
   const [lyrics, setLyrics] = useState([])
   const [value, setValue] = useState('')
+  const [isShow, setIsShow] = useState(false)
 
   useEffect(() => {
     const index = client.initIndex('psalm')
@@ -25,7 +26,7 @@ const LyricsProvider = ({ children }) => {
 
 
   return (
-    <LyricsContext.Provider value={{ lyrics, setValue }}>
+    <LyricsContext.Provider value={{ lyrics, setValue, isShow, setIsShow }}>
       {children}
     </LyricsContext.Provider>
   )

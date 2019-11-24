@@ -6,10 +6,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  TextField,
-  IconButton,
 } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles'
 
 import { LyricsContext } from '../context/LyricsProvider'
@@ -34,8 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default () => {
   const classes = useStyles()
-  const { lyrics, setValue } = useContext(LyricsContext)
-  const [isShow, setIsShow] = useState(false)
+  const { lyrics,  isShow, setIsShow } = useContext(LyricsContext)
   const [content, setContent] = useState({})
 
   const handleClick = (lyric) => {
@@ -60,19 +56,6 @@ export default () => {
         </div>
       ) : (
           <>
-            <TextField
-              id="filled-secondary"
-              variant="outlined"
-              color="secondary"
-              onChange={(e) => setValue(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <IconButton type="submit" aria-label="search">
-                    <SearchIcon />
-                  </IconButton>
-                ),
-              }}
-            />
             <List>
               {lyrics.map(lyric => {
                 return (

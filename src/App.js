@@ -11,6 +11,8 @@ import green from '@material-ui/core/colors/green'
 
 import './App.css'
 import Lyrics from './components/Lyrics'
+import HitsLyrics from './components/HitsLyrics'
+import { LyricsProvider } from './context/LyricsProvider'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -33,12 +35,17 @@ export default () => {
   return (
     <>
       <ThemeProvider theme={theme}>
+      <LyricsProvider>
+
+         <Lyrics>
           <Container className={classes.container} >
             <Box color='text.primary'>
-              <Lyrics></Lyrics>
+              <HitsLyrics/>
             </Box>
           </Container>
+          </Lyrics>
 
+      </LyricsProvider>
       </ThemeProvider>
     </>
   )
