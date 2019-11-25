@@ -131,7 +131,7 @@ export default ({children}) => {
 
 ): <div/>}
 
-{usedInstall ? '':(
+{usedInstall ? console.log(prompt):(
       <IconButton
             edge="end"
             color="inherit"
