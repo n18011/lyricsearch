@@ -166,10 +166,10 @@ export default ({children}) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={hide} color="primary">
-            キャンセル
+            Cancel
           </Button>
           <Button onClick={() => install()} color="secondary">
-            ホームに追加
+            Next
           </Button>
         </DialogActions>
       </Dialog>
