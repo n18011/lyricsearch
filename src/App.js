@@ -20,13 +20,13 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-  const theme = createMuiTheme({
-      palette: {
-        primary: purple,
-        secondary: green,
-        type: 'dark'
-      }
-    })
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+    type: 'dark'
+  }
+})
 
 
 export default () => {
@@ -35,17 +35,17 @@ export default () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <LyricsProvider>
+        <LyricsProvider>
 
-         <Lyrics>
-          <Container className={classes.container} >
-            <Box color='text.primary'>
-              <HitsLyrics/>
-            </Box>
-          </Container>
+          <Lyrics>
+            <Container className={classes.container} >
+              <Box color='text.primary'>
+                <HitsLyrics />
+              </Box>
+            </Container>
           </Lyrics>
 
-      </LyricsProvider>
+        </LyricsProvider>
       </ThemeProvider>
     </>
   )

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 
 import {
-  Link,
+  Button,
   List,
   ListItem,
   ListItemText,
@@ -10,12 +10,15 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 
 import { LyricsContext } from '../context/LyricsProvider'
+import logo from '../search-by-algolia-light-background.png'
 
 const useStyles = makeStyles(theme => ({
   content: {
+    paddingTop: theme.spacing(3),
     height: '100vh'
   },
   back: {
+    backgroundColor: theme.palette.common.black,
     '&:hover': {
       color: theme.palette.secondary.main
     }
@@ -31,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default () => {
   const classes = useStyles()
-  const { lyrics,  isShow, setIsShow } = useContext(LyricsContext)
+  const { lyrics, isShow, setIsShow } = useContext(LyricsContext)
   const [content, setContent] = useState({})
 
   const handleClick = (lyric) => {
@@ -43,16 +46,15 @@ export default () => {
     <>
       {isShow ? (
         <div className={classes.content}>
-          <Typography color='primary' className={classes.back}>
-            <Link
-              color='inherit'
-              underline='always'
-              onClick={() => setIsShow(false)}>もどる</Link>
-          </Typography>
           <Typography variant='h5' align='center' gutterBottom>{`${content.lyric_num} ${content.title}`}</Typography>
           {content.lyrics.map((lyric, index) => (
             <Typography key={index} variant='body1' align='center' color='textSecondary' className={classes.line}>{`${index + 1} ${lyric}`}</Typography>
           ))}
+          <Typography color='primary' className={classes.back}>
+            <Button
+              color='primary'
+              onClick={() => setIsShow(false)}>もどる</Button>
+          </Typography>
         </div>
       ) : (
           <>
@@ -72,7 +74,7 @@ export default () => {
                 )
               })}
             </List>
-            <Typography variant='h5' color='textSecondary'>...</Typography>
+            <img src={logo} alt='search-by-algolia-logo' />
             <Typography color='textSecondary' className={classes.dot}>815件中{lyrics.length}件表示中(表示可能最大件数100件)</Typography>
           </>)}
     </>

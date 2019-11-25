@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 
 import {
   AppBar,
@@ -13,7 +13,7 @@ import {
   DialogContent,
   DialogContentText
 } from '@material-ui/core'
-import {fade, makeStyles} from '@material-ui/core/styles'
+import { fade, makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search';
 import QueueMusicRoundedIcon from '@material-ui/icons/QueueMusicRounded';
 import AddToHomeScreenIcon from '@material-ui/icons/AddToHomeScreen';
@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
-  installButton:{
+  installButton: {
     marginLeft: theme.spacing(1)
   }
 }))
@@ -75,7 +75,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default ({children}) => {
+export default ({ children }) => {
   const classes = useStyles()
   const { setValue, isShow, setIsShow } = useContext(LyricsContext)
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
@@ -100,56 +100,57 @@ export default ({children}) => {
 
   return (
     <>
-    <header className={classes.root}>
-    <AppBar >
-            <Toolbar >
-      <IconButton
-            edge="start"
-            color="inherit"
-            className={classes.menuButton}
-            aria-label="open drawer"
-            onClick={() => setIsShow(false)}
-          >
-      <QueueMusicRoundedIcon/>
-          </IconButton>
+      <header className={classes.root}>
+        <AppBar >
+          <Toolbar >
+            <IconButton
+              edge="start"
+              color="inherit"
+              className={classes.menuButton}
+              aria-label="open drawer"
+              onClick={() => setIsShow(false)}
+            >
+              <QueueMusicRoundedIcon />
+            </IconButton>
 
-{!isShow ? (
+            {!isShow ? (
               <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              onChange={(e) => setValue(e.target.value)}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  onChange={(e) => setValue(e.target.value)}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </div>
 
-): <div/>}
+            ) : <div />}
 
-{usedInstall ? (
-      <IconButton
-            edge="end"
-            color="inherit"
-            className={classes.installButton}
-            aria-label="open drawer"
-            onClick={() => setVisibleState(true)}
-          >
-            <AddToHomeScreenIcon/>
-          </IconButton>
-): ''}
+            {usedInstall ? (
+              <IconButton
+                edge="end"
+                color="inherit"
+                className={classes.installButton}
+                aria-label="open drawer"
+                onClick={() => setVisibleState(true)}
+              >
+                <AddToHomeScreenIcon />
+              </IconButton>
+            ) : ''}
 
-            </Toolbar>
-          </AppBar>
-          <Toolbar id='back-to-top-anchor' />
-        </header>
+          </Toolbar>
+        </AppBar>
+        <Toolbar id='back-to-top-anchor' />
+      </header>
 
-    {children}
-    <Dialog
+      {children}
+
+      <Dialog
         open={isVisible}
         TransitionComponent={Transition}
         keepMounted
@@ -173,7 +174,7 @@ export default ({children}) => {
           </Button>
         </DialogActions>
       </Dialog>
-    <ScrollTop></ScrollTop>
+      <ScrollTop/>
     </>
   )
 }
