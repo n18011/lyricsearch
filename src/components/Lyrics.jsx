@@ -4,7 +4,14 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  InputBase
+  Button,
+  InputBase,
+  Slide,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  DialogContentText
 } from '@material-ui/core'
 import {fade, makeStyles} from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search';
@@ -13,6 +20,7 @@ import AddToHomeScreenIcon from '@material-ui/icons/AddToHomeScreen';
 
 import ScrollTop from './ScrollTop.jsx'
 import { LyricsContext } from '../context/LyricsProvider'
+import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,9 +71,32 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 export default ({children}) => {
   const classes = useStyles()
   const { setValue, isShow, setIsShow } = useContext(LyricsContext)
+  const [prompt, promptToInstall] = useAddToHomescreenPrompt();
+  const [isVisible, setVisibleState] = React.useState(false);
+
+  const hide = () => setVisibleState(false);
+
+  const install = () => {
+    promptToInstall()
+    hide()
+  }
+
+  React.useEffect(
+    () => {
+      if (prompt) {
+        setVisibleState(true);
+      }
+    },
+    [prompt]
+  );
+
   return (
     <>
     <header className={classes.root}>
@@ -104,16 +135,41 @@ export default ({children}) => {
             color="inherit"
             className={classes.installButton}
             aria-label="open drawer"
+            onClick={() => setVisibleState(true)}
           >
             <AddToHomeScreenIcon/>
           </IconButton>
-          
+
             </Toolbar>
           </AppBar>
           <Toolbar id='back-to-top-anchor' />
         </header>
 
     {children}
+    <Dialog
+        open={isVisible}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={hide}
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={hide} color="primary">
+            キャンセル
+          </Button>
+          <Button onClick={() => install()} color="secondary">
+            ホームに追加
+          </Button>
+        </DialogActions>
+      </Dialog>
     <ScrollTop></ScrollTop>
     </>
   )
