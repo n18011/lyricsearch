@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 
 import {
   AppBar,
@@ -80,6 +80,7 @@ export default ({children}) => {
   const { setValue, isShow, setIsShow } = useContext(LyricsContext)
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
   const [isVisible, setVisibleState] = React.useState(false);
+  const [usedInstall, setUsedInstall] = useState(false)
 
   const hide = () => setVisibleState(false);
 
@@ -88,16 +89,14 @@ export default ({children}) => {
     hide()
   }
 
-  /*
   React.useEffect(
     () => {
       if (prompt) {
-        setVisibleState(true);
+        setUsedInstall(true)
       }
     },
     [prompt]
   );
-  */
 
   return (
     <>
@@ -132,8 +131,7 @@ export default ({children}) => {
 
 ): <div/>}
 
-{prompt ? "" :
-(
+{usedInstall ? '':(
       <IconButton
             edge="end"
             color="inherit"
@@ -143,8 +141,7 @@ export default ({children}) => {
           >
             <AddToHomeScreenIcon/>
           </IconButton>
-)
-}
+)}
 
             </Toolbar>
           </AppBar>
@@ -160,11 +157,11 @@ export default ({children}) => {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">ホームに追加しますか？</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
+            ホームに追加することで、オフラインでもアクセスすることができます。
+            またパフォーマンスも上がるため、ユーザエクスペリエンスの向上が期待できます。
           </DialogContentText>
         </DialogContent>
         <DialogActions>
