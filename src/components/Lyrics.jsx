@@ -131,7 +131,7 @@ export default ({children}) => {
 
 ): <div/>}
 
-{usedInstall ? console.log(prompt):(
+{usedInstall ? (
       <IconButton
             edge="end"
             color="inherit"
@@ -141,7 +141,7 @@ export default ({children}) => {
           >
             <AddToHomeScreenIcon/>
           </IconButton>
-)}
+): ''}
 
             </Toolbar>
           </AppBar>
