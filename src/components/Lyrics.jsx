@@ -88,6 +88,7 @@ export default ({children}) => {
     hide()
   }
 
+  /*
   React.useEffect(
     () => {
       if (prompt) {
@@ -96,6 +97,7 @@ export default ({children}) => {
     },
     [prompt]
   );
+  */
 
   return (
     <>
@@ -130,6 +132,8 @@ export default ({children}) => {
 
 ): <div/>}
 
+{prompt ? "" :
+(
       <IconButton
             edge="end"
             color="inherit"
@@ -139,6 +143,8 @@ export default ({children}) => {
           >
             <AddToHomeScreenIcon/>
           </IconButton>
+)
+}
 
             </Toolbar>
           </AppBar>
